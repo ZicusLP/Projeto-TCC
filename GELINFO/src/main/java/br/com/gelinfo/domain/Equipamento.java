@@ -15,7 +15,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_equipamentos")
-@NamedQueries({@NamedQuery(name = "Equipamento.listar", query = "SELECT equipamento FROM Equipamento equipamento")})
+@NamedQueries({
+@NamedQuery(name = "Equipamento.listar", query = "SELECT equipamento FROM Equipamento equipamento"),
+@NamedQuery(name = "Equipamento.buscarPorCodigo", query = "SELECT equipamento FROM Equipamento equipamento WHERE equipamento.codigo = :codigo")
+})
 public class Equipamento {
 	
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -111,6 +114,13 @@ public class Equipamento {
 
 	public void setTipo(TipoEquipamento tipo) {
 		this.tipo = tipo;
+	}
+
+	@Override
+	public String toString() {
+		return "Equipamento [codigo=" + codigo + ", patrimonio=" + patrimonio + ", npatrimonio=" + npatrimonio
+				+ ", nserie=" + nserie + ", tipo=" + tipo + ", setor=" + setor + ", modelo=" + modelo + ", inventario="
+				+ inventario + "]";
 	}
 
 	

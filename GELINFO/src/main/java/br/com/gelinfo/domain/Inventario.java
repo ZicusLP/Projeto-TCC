@@ -18,7 +18,10 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "tb_inventario")
-@NamedQueries({@NamedQuery(name = "Inventario.listar", query = "SELECT inventario FROM Inventario inventario")})
+@NamedQueries({
+@NamedQuery(name = "Inventario.listar", query = "SELECT inventario FROM Inventario inventario"),
+@NamedQuery(name = "Inventario.buscarPorCodigo", query = "SELECT inventario FROM Inventario inventario WHERE inventario.codigo = :codigo")
+})
 public class Inventario {
 	
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -78,6 +81,12 @@ public class Inventario {
 
 	public void setSetor(Setor setor) {
 		this.setor = setor;
+	}
+
+	@Override
+	public String toString() {
+		return "Inventario [codigo=" + codigo + ", data=" + data + ", status=" + status + ", usuario=" + usuario
+				+ ", setor=" + setor + "]";
 	}
 	
 	

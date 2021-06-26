@@ -14,7 +14,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_modelos")
-@NamedQueries({@NamedQuery(name = "Modelo.listar", query = "SELECT modelo FROM Modelo modelo")})
+@NamedQueries({
+@NamedQuery(name = "Modelo.listar", query = "SELECT modelo FROM Modelo modelo"),
+@NamedQuery(name = "Modelo.buscarPorCodigo", query = "SELECT modelo FROM Modelo modelo WHERE modelo.codigo = :codigo")
+})
 public class Modelo {
 	
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -51,6 +54,12 @@ public class Modelo {
 	public void setMarca(Marca marca) {
 		this.marca = marca;
 	}
+
+	@Override
+	public String toString() {
+		return "Modelo [codigo=" + codigo + ", nome=" + nome + ", marca=" + marca + "]";
+	}
+	
 	
 
 }

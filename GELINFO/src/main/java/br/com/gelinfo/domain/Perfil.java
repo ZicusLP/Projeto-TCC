@@ -11,7 +11,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_perfil")
-@NamedQueries({@NamedQuery(name = "Perfil.listar", query = "SELECT perfil FROM Perfil perfil")})
+@NamedQueries({
+@NamedQuery(name = "Perfil.listar", query = "SELECT perfil FROM Perfil perfil"),
+@NamedQuery(name = "Perfil.buscarPorCodigo", query = "SELECT perfil FROM Perfil perfil WHERE perfil.codigo = :codigo")
+})
 public class Perfil {
 	
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,7 +35,10 @@ public class Perfil {
 	public void setFuncao(String funcao) {
 		this.funcao = funcao;
 	}
+	@Override
+	public String toString() {
+		return "Perfil [codigo=" + codigo + ", funcao=" + funcao + "]";
+	}
 	
 	
-
 }

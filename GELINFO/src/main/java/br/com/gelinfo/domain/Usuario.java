@@ -14,7 +14,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_usuarios")
-@NamedQueries({@NamedQuery(name = "Usuario.listar", query = "SELECT usuario FROM Usuario usuario")})
+@NamedQueries({
+@NamedQuery(name = "Usuario.listar", query = "SELECT usuario FROM Usuario usuario"),
+@NamedQuery(name = "Usuario.buscarPorCodigo", query = "SELECT usuario FROM Usuario usuario WHERE usuario.codigo = :codigo")
+})
 public class Usuario {
 	
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -80,6 +83,12 @@ public class Usuario {
 
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [codigo=" + codigo + ", nome=" + nome + ", login=" + login + ", senha=" + senha + ", telefone="
+				+ telefone + ", perfil=" + perfil + "]";
 	}
 	
 	

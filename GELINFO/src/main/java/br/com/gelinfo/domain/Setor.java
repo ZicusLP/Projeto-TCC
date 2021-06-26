@@ -15,7 +15,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_setores")
-@NamedQueries({@NamedQuery(name = "Setor.listar", query = "SELECT setor FROM Setor setor")})
+@NamedQueries({
+@NamedQuery(name = "Setor.listar", query = "SELECT setor FROM Setor setor"),
+@NamedQuery(name = "Setor.buscarPorCodigo", query = "SELECT setor FROM Setor setor WHERE setor.codigo = :codigo")
+})
 public class Setor {
 	
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -84,15 +87,12 @@ public class Setor {
 	public void setBairro(Bairro bairro) {
 		this.bairro = bairro;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
+	@Override
+	public String toString() {
+		return "Setor [codigo=" + codigo + ", nome=" + nome + ", sigla=" + sigla + ", andar=" + andar + ", secretaria="
+				+ secretaria + ", bairro=" + bairro + "]";
+	}
 	
 	
 }
