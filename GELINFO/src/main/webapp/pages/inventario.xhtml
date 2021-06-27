@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/layoutSystem.xhtml">
+
+	<ui:define name="menu">
+		<ui:include src="/templates/layoutSystem.xhtml" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+
+		<h:form id="frmsetor">
+
+			<p:dataTable id="tbsetor" widgetVar="tabelaSetor"
+				emptyMessage="Nenhum registro encontrado!" value="#{MBInventario.itens}"
+				var="item" filteredValue="#{MBInventario.itensFiltrados}" reflow="true"
+				resizableColumns="true" paginator="true" rows="10">
+
+				<f:facet name="header">Lista de Inventarios</f:facet>
+
+				<p:column headerText="Data" sortBy="#{item.data}"
+					filterBy="#{item.data}">
+					<h:outputText value="#{item.data}" />
+				</p:column>
+
+				<p:column headerText="Status" sortBy="#{item.status}"
+					filterBy="#{item.status}">
+					<h:outputText value="#{item.status}" />
+				</p:column>
+
+				<p:column headerText="Setor" sortBy="#{item.st_codigo}"
+					filterBy="#{item.st_codigo}">
+					<h:outputText value="#{item.setor.sigla}" />
+				</p:column>
+
+				<p:column headerText="Usuário" sortBy="#{item.u_codigo}"
+					filterBy="#{item.u_codigo}">
+					<h:outputText value="#{item.usuario.nome}" />
+				</p:column>
+
+
+				<p:column headerText="Opções">
+					<p:commandButton icon="ui-icon-pencil"
+						oncomplete="PF('dlgsetorEditar').show();"
+						update=":frmsetorEditar:pnsetorEditar">
+						<f:setPropertyActionListener value="#{item}"
+							target="#{MBInventario.inventario}"></f:setPropertyActionListener>
+					</p:commandButton>
+
+					<p:commandButton icon="ui-icon-check"
+						oncomplete="PF('dlgsetorExcluir').show();"
+						update=":frmsetorExcluir:pnsetorExcluir">
+						<f:setPropertyActionListener value="#{item}"
+							target="#{MBInventario.inventario}"></f:setPropertyActionListener>
+					</p:commandButton>
+
+				</p:column>
+
+				<f:facet name="footer">
+					<p:commandButton value="Novo"
+						actionListener="#{MBInventario.prepararInserir}"
+						oncomplete="PF('dlgsetorNovo').show();"
+						update=":frmsetorNovo:pnsetorNovo" />
+				</f:facet>
+
+			</p:dataTable>
+
+		</h:form>
+
+		<p:dialog widgetVar="dlgsetorNovo" closable="false" draggable="false"
+			resizable="false" header="Cadastrar Setor" modal="true"
+			appendTo="@(body)" update=":frmsetorNovo:pnsetorNovo :msgGlobal">
+			<h:form id="frmsetorNovo">
+				<h:panelGrid id="pnsetorNovo" columns="2">
+
+					<p:outputLabel value="Secretaria" for="txtsetNovo" />
+					<p:selectOneMenu>
+						<f:selectItem itemValue="" itemLabel="Selecione a Secretaria" />
+						<f:selectItem itemValue="" itemLabel="SMA" />
+						<f:selectItem itemValue="" itemLabel="SMO" />
+						<f:selectItem itemValue="" itemLabel="SMU" />
+						<f:selectItem itemValue="" itemLabel="SMAC" />
+						<f:selectItem itemValue="" itemLabel="SMAE" />
+						<f:selectItem itemValue="" itemLabel="SEXEC" />
+						<f:selectItem itemValue="" itemLabel="PNCV" />
+						<f:selectItem itemValue="" itemLabel="SEPLAG" />
+						<f:selectItem itemValue="" itemLabel="CGM" />
+						<f:selectItem itemValue="" itemLabel="PGM" />
+						<f:selectItem itemValue="" itemLabel="SMF" />
+						<f:selectItem itemValue="" itemLabel="SEMUG" />
+						<f:selectItem itemValue="" itemLabel="EGP" />
+						</p:selectOneMenu>
+
+					<p:outputLabel value="Endereço" for="txtsetNovo" />
+					<p:selectOneMenu>
+						<f:selectItem itemValue="" itemLabel="Selecione o Endereço" />
+						<f:selectItem itemValue="" itemLabel="R Visconde de Sepetiba, 987" />
+						<f:selectItem itemValue="" itemLabel="R Visconde de Sepetiba, 935" />
+						<f:selectItem itemValue="" itemLabel="R da Conceição, 100" />
+						<f:selectItem itemValue="" itemLabel="R Coronel Gomes Machado, 258" />
+						<f:selectItem itemValue="" itemLabel="Av. Ary Parreiras, 21" />
+						<f:selectItem itemValue="" itemLabel="Estrada Francisco da Cruz Nunes, 6666" />
+						<f:selectItem itemValue="" itemLabel="Praça Fonseca Ramos s/n" />
+						<f:selectItem itemValue="" itemLabel="RUA CONSUL FRANCISCO CRUZ, 49" />
+						<f:selectItem itemValue="" itemLabel="	Rua Prof. Valdemir Alves Machado, s/n" />
+						<f:selectItem itemValue="" itemLabel="R. Rio Branco, 02" />
+						
+						</p:selectOneMenu>
+
+					<p:outputLabel value="Nome do setor" for="txtsetNovo" />
+					<h:inputText size="30" maxlength="50" id="txtsetNovo"
+						value="#{MBSetor.setor.nome}" required="true"
+						requiredMessage="Preencha todos os campos!" />
+					<p:outputLabel value="Sigla" for="txtsetNovo" />
+					<h:inputText size="30" maxlength="10"
+						value="#{MBSetor.setor.sigla}" required="true"
+						requiredMessage="Preencha todos os campos!" />
+					<p:outputLabel value="Andar" for="txtsetNovo" />
+					<h:inputText size="30" maxlength="10"
+						value="#{MBSetor.setor.andar}" required="true"
+						requiredMessage="Preencha todos os campos!" />
+
+
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<p:commandButton value="Gravar" actionListener="#{MBSetor.salvar}"
+						oncomplete="verificar(xhr, status, args, 'dlgsetorNovo', 'tbsetor');"
+						update="frmsetor:tbsetor :msgGlobal" />
+					<p:commandButton value="Cancelar" process="@this"
+						onclick="PF('dlgsetorNovo').hide();" />
+
+
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog widgetVar="dlgsetorExcluir" closable="false"
+			draggable="false" resizable="false" header="Excluir Setor"
+			modal="true" appendTo="@(body)">
+
+			<h:form id="frmsetorExcluir">
+				<h:panelGrid id="pnsetorExcluir">
+					<h:outputText value="Nome" />
+					<h:outputText value="#{MBSetor.setor.nome}" />
+					<h:outputText value="Sigla" />
+					<h:outputText value="#{MBSetor.setor.sigla}" />
+					<h:outputText value="Andar" />
+					<h:outputText value="#{MBSetor.setor.andar}" />
+					<h:outputText value="Secretaria" />
+					<h:outputText value="#{MBSetor.setor.secretaria.sigla}" />
+					<h:outputText value="Bairro" />
+					<h:outputText value="#{MBSetor.setor.bairro.nome}" />
+					<h:outputText value="Endereço" />
+					<h:outputText value="#{MBSetor.setor.bairro.endereco}" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Excluir"
+						actionListener="#{MBSetor.excluir}"
+						oncomplete="PF('dlgsetorExcluir').hide(); PF('tabelaSetor').clearFilters();"
+						update="frmsetor:tbsetor :msgGlobal" />
+					<p:commandButton value="Cancelar" process="@this"
+						onclick="PF('dlgsetorExcluir').hide(); " />
+				</h:panelGrid>
+
+			</h:form>
+
+		</p:dialog>
+
+		<p:dialog widgetVar="dlgsetorEditar" closable="false"
+			draggable="false" resizable="false" header="Editar Setor"
+			modal="true" appendTo="@(body)">
+
+			<h:form id="frmsetorEditar">
+				<h:panelGrid id="pnsetorEditar">
+					<h:outputText value="Nome" />
+					<h:inputText value="#{MBSetor.setor.nome}" id="txtEdtSetor" />
+					<h:outputText value="Sigla" />
+					<h:inputText value="#{MBSetor.setor.sigla}" />
+					<h:outputText value="Andar" />
+					<h:inputText value="#{MBSetor.setor.andar}" />
+
+					<h:outputText value="Secretaria" />
+					<h:inputText value="#{MBSetor.setor.secretaria.sigla}" />
+
+					<h:outputText value="Bairro" />
+					<h:inputText value="#{MBSetor.setor.bairro.nome}" />
+					<h:outputText value="Endereço" />
+					<h:inputText value="#{MBSetor.setor.bairro.endereco}" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Editar" actionListener="#{MBSetor.editar}"
+						oncomplete="PF('dlgsetorEditar').hide(); PF('tabelaSetor').clearFilters();"
+						update="frmsetor:tbsetor :msgGlobal" />
+					<p:commandButton value="Cancelar" process="@this"
+						onclick="PF('dlgsetorEditar').hide();" />
+				</h:panelGrid>
+
+			</h:form>
+
+		</p:dialog>
+
+
+	</ui:define>
+
+
+</ui:composition>

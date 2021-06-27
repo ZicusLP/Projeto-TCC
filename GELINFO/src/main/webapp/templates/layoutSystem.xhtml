@@ -24,14 +24,14 @@ xmlns:ui ="http://java.sun.com/jsf/facelets"
        
     </p:layoutUnit>
     
-    <p:layoutUnit position = "west" size = "190" header = "Menu" resizable = "true"  >
+    <p:layoutUnit position = "west" size = "190" header = "Menu" resizable = "true" collapsible="true" >
         
         <h:form>
         <p:panelMenu>
         <p:submenu label = "Configurações">
         
-        <p:menuitem value = "Perfil"/>
-        <p:menuitem value = "Usuários"/>
+        <p:menuitem value = "Perfil" outcome="/pages/perfil.xhtml"/>
+        <p:menuitem value = "Usuários" outcome="/pages/usuarios.xhtml"/>
         <p:menuitem value = "Sair"/>
         
         </p:submenu>
@@ -39,18 +39,18 @@ xmlns:ui ="http://java.sun.com/jsf/facelets"
         <p:submenu label = "Cadastros">
         
         <p:menuitem value = "Secretarias" outcome="/pages/secretarias.xhtml"/>
-        <p:menuitem value = "Bairros"/>
-        <p:menuitem value = "Setores"/>
-        <p:menuitem value = "Marcas"/>
-        <p:menuitem value = "Modelos"/>
-        <p:menuitem value = "Tipos de Equipamentos"/>
-        <p:menuitem value = "Equipamentos"/>
+        <p:menuitem value = "Bairros" outcome="/pages/bairros.xhtml"/>
+        <p:menuitem value = "Setores" outcome="/pages/setores.xhtml"/>
+        <p:menuitem value = "Marcas" outcome="/pages/marcas.xhtml"/>
+        <p:menuitem value = "Modelos" outcome="/pages/modelos.xhtml"/>
+        <p:menuitem value = "Tipos de Equipamentos" outcome="/pages/tipoequipamento.xhtml"/>
+        <p:menuitem value = "Equipamentos" outcome="/pages/equipamentos.xhtml"/>
         
         </p:submenu>
         
         <p:submenu label = "Inventário">
         
-        <p:menuitem value = "Inventariar"/>
+        <p:menuitem value = "Inventariar" outcome="/pages/inventario.xhtml"/>
         
         </p:submenu>
         

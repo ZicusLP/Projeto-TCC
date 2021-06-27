@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/layoutSystem.xhtml">
+
+	<ui:define name="menu">
+		<ui:include src="/templates/layoutSystem.xhtml" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+
+		<h:form id="frmeq">
+
+			<p:dataTable id="tbeq" widgetVar="tabelaEq"
+				emptyMessage="Nenhum registro encontrado!" value="#{MBEquipamento.itens}"
+				var="item" filteredValue="#{MBEquipamento.itensFiltrados}" reflow="true"
+				resizableColumns="true" paginator="true" rows="10">
+
+				<f:facet name="header">Lista de Equipamentos</f:facet>
+
+				<p:column headerText="Patrimônio" sortBy="#{item.patrimonio}"
+					filterBy="#{item.patrimonio}">
+					<h:outputText value="#{item.patrimonio}" />
+				</p:column>
+
+				<p:column headerText="N° Patrimônio" sortBy="#{item.npatrimonio}"
+					filterBy="#{item.npatrimonio}">
+					<h:outputText value="#{item.npatrimonio}" />
+				</p:column>
+
+				<p:column headerText="N° de Série" sortBy="#{item.nserie}"
+					filterBy="#{item.nserie}">
+					<h:outputText value="#{item.nserie}" />
+				</p:column>
+
+				<p:column headerText="Modelo" sortBy="#{item.md_codigo}"
+					filterBy="#{item.md_codigo}">
+					<h:outputText value="#{item.modelo.nome}" />
+				</p:column>
+
+				<p:column headerText="Tipo" sortBy="#{item.tp_codigo}"
+					filterBy="#{item.tp_codigo}">
+					<h:outputText value="#{item.tipo.nome}" />
+				</p:column>
+
+				<p:column headerText="Setor" sortBy="#{item.st_codigo}"
+					filterBy="#{item.st_codigo}">
+					<h:outputText value="#{item.setor.sigla}" />
+				</p:column>
+
+				<p:column headerText="Opções">
+					<p:commandButton icon="ui-icon-pencil"
+						oncomplete="PF('dlgeqEditar').show();"
+						update=":frmeqEditar:pneqEditar">
+						<f:setPropertyActionListener value="#{item}"
+							target="#{MBEquipamento.equipamento}"></f:setPropertyActionListener>
+					</p:commandButton>
+
+					<p:commandButton icon="ui-icon-trash"
+						oncomplete="PF('dlgeqExcluir').show();"
+						update=":frmeqExcluir:pneqExcluir">
+						<f:setPropertyActionListener value="#{item}"
+							target="#{MBEquipamento.equipamento}"></f:setPropertyActionListener>
+					</p:commandButton>
+
+				</p:column>
+
+				<f:facet name="footer">
+					<p:commandButton value="Novo"
+						actionListener="#{MBEquipamento.prepararInserir}"
+						oncomplete="PF('dlgeqNovo').show();"
+						update=":frmeqNovo:pneqNovo" />
+				</f:facet>
+
+			</p:dataTable>
+
+		</h:form>
+
+		<p:dialog widgetVar="dlgeqNovo" closable="false" draggable="false"
+			resizable="false" header="Cadastrar Equipamento" modal="true"
+			appendTo="@(body)" update=":frmeqNovo:pneqNovo :msgGlobal">
+			<h:form id="frmeqNovo">
+				<h:panelGrid id="pneqNovo" columns="2">
+					
+					
+				
+					
+					<p:tabView>
+       					 <p:tab title="CPU">
+       					 
+       					 <h:panelGrid columns="2" cellpadding="10">
+             <p:outputLabel value="Secretaria" for="txtsetNovo" />
+					<p:selectOneMenu>
+						<f:selectItem itemValue="" itemLabel="Selecione a Secretaria" />
+						<f:selectItem itemValue="" itemLabel="SMA" />
+						<f:selectItem itemValue="" itemLabel="SMO" />
+						<f:selectItem itemValue="" itemLabel="SMU" />
+						<f:selectItem itemValue="" itemLabel="SMAC" />
+						<f:selectItem itemValue="" itemLabel="SMAE" />
+						<f:selectItem itemValue="" itemLabel="SEXEC" />
+						<f:selectItem itemValue="" itemLabel="PNCV" />
+						<f:selectItem itemValue="" itemLabel="SEPLAG" />
+						<f:selectItem itemValue="" itemLabel="CGM" />
+						<f:selectItem itemValue="" itemLabel="PGM" />
+						<f:selectItem itemValue="" itemLabel="SMF" />
+						<f:selectItem itemValue="" itemLabel="SEMUG" />
+						<f:selectItem itemValue="" itemLabel="EGP" />
+						</p:selectOneMenu>
+					
+					<p:outputLabel value="Setor" for="txtsetNovo" />
+					<p:selectOneMenu>
+						<f:selectItem itemValue="" itemLabel="Selecione o Setor" />
+						<f:selectItem itemValue="" itemLabel="ADV" />
+						<f:selectItem itemValue="" itemLabel="ASCC" />
+						<f:selectItem itemValue="" itemLabel="ADPP" />
+						<f:selectItem itemValue="" itemLabel="ADCRP" />
+						<f:selectItem itemValue="" itemLabel="CPD" />
+						<f:selectItem itemValue="" itemLabel="ADSG" />
+						<f:selectItem itemValue="" itemLabel="GABINETE" />
+					</p:selectOneMenu>
+			
+
+					<p:outputLabel value="Patrimônio" for="txtsetNovo" />
+					<h:inputText size="30" maxlength="50" id="txtsetNovo"
+						value="#{MBEquipamento.equipamento.patrimonio}" required="true"
+						requiredMessage="Preencha todos os campos!" />
+					<p:outputLabel value="N° Patrimônio" for="txtsetNovo" />
+					<h:inputText size="30" maxlength="10"
+						value="#{MBEquipamento.equipamento.npatrimonio}" required="true"
+						requiredMessage="Preencha todos os campos!" />
+					<p:outputLabel value="N° Série" for="txtsetNovo" />
+					<h:inputText size="30" maxlength="10"
+						value="#{MBEquipamento.equipamento.nserie}" required="true"
+						requiredMessage="Preencha todos os campos!" />
+					<p:outputLabel value="N° de IP" for="txtsetNovo"></p:outputLabel>
+					<h:inputText size="30" maxlength="50"/>	
+						</h:panelGrid>
+        </p:tab>
+        
+        	 <p:tab title="Impressora">
+       					 
+       					 <h:panelGrid columns="2" cellpadding="10">
+             <p:outputLabel value="Secretaria" for="txtsetNovoi" />
+					<p:selectOneMenu>
+						<f:selectItem itemValue="" itemLabel="Selecione a Secretaria" />
+						<f:selectItem itemValue="" itemLabel="SMA" />
+						<f:selectItem itemValue="" itemLabel="SMO" />
+						<f:selectItem itemValue="" itemLabel="SMU" />
+						<f:selectItem itemValue="" itemLabel="SMAC" />
+						<f:selectItem itemValue="" itemLabel="SMAE" />
+						<f:selectItem itemValue="" itemLabel="SEXEC" />
+						<f:selectItem itemValue="" itemLabel="PNCV" />
+						<f:selectItem itemValue="" itemLabel="SEPLAG" />
+						<f:selectItem itemValue="" itemLabel="CGM" />
+						<f:selectItem itemValue="" itemLabel="PGM" />
+						<f:selectItem itemValue="" itemLabel="SMF" />
+						<f:selectItem itemValue="" itemLabel="SEMUG" />
+						<f:selectItem itemValue="" itemLabel="EGP" />
+						</p:selectOneMenu>
+					
+					<p:outputLabel value="Setor" for="txtsetNovoi" />
+					<p:selectOneMenu>
+						<f:selectItem itemValue="" itemLabel="Selecione o Setor" />
+						<f:selectItem itemValue="" itemLabel="ADV" />
+						<f:selectItem itemValue="" itemLabel="ASCC" />
+						<f:selectItem itemValue="" itemLabel="ADPP" />
+						<f:selectItem itemValue="" itemLabel="ADCRP" />
+						<f:selectItem itemValue="" itemLabel="CPD" />
+						<f:selectItem itemValue="" itemLabel="ADSG" />
+						<f:selectItem itemValue="" itemLabel="GABINETE" />
+					</p:selectOneMenu>
+			
+
+					<p:outputLabel value="Patrimônio" for="txtsetNovoi" />
+					<h:inputText size="30" maxlength="50" id="txtsetNovoi"
+						value="#{MBEquipamento.equipamento.patrimonio}" required="true"
+						requiredMessage="Preencha todos os campos!" />
+					<p:outputLabel value="N° Patrimônio" for="txtsetNovoi" />
+					<h:inputText size="30" maxlength="10"
+						value="#{MBEquipamento.equipamento.npatrimonio}" required="true"
+						requiredMessage="Preencha todos os campos!" />
+					<p:outputLabel value="N° Série" for="txtsetNovoi" />
+					<h:inputText size="30" maxlength="10"
+						value="#{MBEquipamento.equipamento.nserie}" required="true"
+						requiredMessage="Preencha todos os campos!" />
+					<p:outputLabel value="N° de IP" for="txtsetNovoi"></p:outputLabel>
+					<h:inputText size="30" maxlength="50"/>	
+					<p:outputLabel value="Contador" for="txtsetNovoi"></p:outputLabel>
+					<h:inputText size="30" maxlength="50"/>		
+						</h:panelGrid>
+        </p:tab>
+        
+        	 <p:tab title="Monitor">
+       					 
+       					 <h:panelGrid columns="2" cellpadding="10">
+             <p:outputLabel value="Secretaria" for="txtsetNovom" />
+					<p:selectOneMenu>
+						<f:selectItem itemValue="" itemLabel="Selecione a Secretaria" />
+						<f:selectItem itemValue="" itemLabel="SMA" />
+						<f:selectItem itemValue="" itemLabel="SMO" />
+						<f:selectItem itemValue="" itemLabel="SMU" />
+						<f:selectItem itemValue="" itemLabel="SMAC" />
+						<f:selectItem itemValue="" itemLabel="SMAE" />
+						<f:selectItem itemValue="" itemLabel="SEXEC" />
+						<f:selectItem itemValue="" itemLabel="PNCV" />
+						<f:selectItem itemValue="" itemLabel="SEPLAG" />
+						<f:selectItem itemValue="" itemLabel="CGM" />
+						<f:selectItem itemValue="" itemLabel="PGM" />
+						<f:selectItem itemValue="" itemLabel="SMF" />
+						<f:selectItem itemValue="" itemLabel="SEMUG" />
+						<f:selectItem itemValue="" itemLabel="EGP" />
+						</p:selectOneMenu>
+					
+					<p:outputLabel value="Setor" for="txtsetNovom" />
+					<p:selectOneMenu>
+						<f:selectItem itemValue="" itemLabel="Selecione o Setor" />
+						<f:selectItem itemValue="" itemLabel="ADV" />
+						<f:selectItem itemValue="" itemLabel="ASCC" />
+						<f:selectItem itemValue="" itemLabel="ADPP" />
+						<f:selectItem itemValue="" itemLabel="ADCRP" />
+						<f:selectItem itemValue="" itemLabel="CPD" />
+						<f:selectItem itemValue="" itemLabel="ADSG" />
+						<f:selectItem itemValue="" itemLabel="GABINETE" />
+					</p:selectOneMenu>
+			
+
+					<p:outputLabel value="Patrimônio" for="txtsetNovom" />
+					<h:inputText size="30" maxlength="50" id="txtsetNovom"
+						value="#{MBEquipamento.equipamento.patrimonio}" required="true"
+						requiredMessage="Preencha todos os campos!" />
+					<p:outputLabel value="N° Patrimônio" for="txtsetNovom" />
+					<h:inputText size="30" maxlength="10"
+						value="#{MBEquipamento.equipamento.npatrimonio}" required="true"
+						requiredMessage="Preencha todos os campos!" />
+					<p:outputLabel value="N° Série" for="txtsetNovom" />
+					<h:inputText size="30" maxlength="10"
+						value="#{MBEquipamento.equipamento.nserie}" required="true"
+						requiredMessage="Preencha todos os campos!" />
+					<p:outputLabel value="Tamanho de Tela" for="txtsetNovom"></p:outputLabel>
+					<h:inputText size="30" maxlength="50"/>	
+						</h:panelGrid>
+        </p:tab>
+        
+        	 <p:tab title="Roteador">
+       					 
+       					 <h:panelGrid columns="2" cellpadding="10">
+             <p:outputLabel value="Secretaria" for="txtsetNovor" />
+					<p:selectOneMenu>
+						<f:selectItem itemValue="" itemLabel="Selecione a Secretaria" />
+						<f:selectItem itemValue="" itemLabel="SMA" />
+						<f:selectItem itemValue="" itemLabel="SMO" />
+						<f:selectItem itemValue="" itemLabel="SMU" />
+						<f:selectItem itemValue="" itemLabel="SMAC" />
+						<f:selectItem itemValue="" itemLabel="SMAE" />
+						<f:selectItem itemValue="" itemLabel="SEXEC" />
+						<f:selectItem itemValue="" itemLabel="PNCV" />
+						<f:selectItem itemValue="" itemLabel="SEPLAG" />
+						<f:selectItem itemValue="" itemLabel="CGM" />
+						<f:selectItem itemValue="" itemLabel="PGM" />
+						<f:selectItem itemValue="" itemLabel="SMF" />
+						<f:selectItem itemValue="" itemLabel="SEMUG" />
+						<f:selectItem itemValue="" itemLabel="EGP" />
+						</p:selectOneMenu>
+					
+					<p:outputLabel value="Setor" for="txtsetNovor" />
+					<p:selectOneMenu>
+						<f:selectItem itemValue="" itemLabel="Selecione o Setor" />
+						<f:selectItem itemValue="" itemLabel="ADV" />
+						<f:selectItem itemValue="" itemLabel="ASCC" />
+						<f:selectItem itemValue="" itemLabel="ADPP" />
+						<f:selectItem itemValue="" itemLabel="ADCRP" />
+						<f:selectItem itemValue="" itemLabel="CPD" />
+						<f:selectItem itemValue="" itemLabel="ADSG" />
+						<f:selectItem itemValue="" itemLabel="GABINETE" />
+					</p:selectOneMenu>
+			
+
+					<p:outputLabel value="Patrimônio" for="txtsetNovor" />
+					<h:inputText size="30" maxlength="50" id="txtsetNovor"
+						value="#{MBEquipamento.equipamento.patrimonio}" required="true"
+						requiredMessage="Preencha todos os campos!" />
+					<p:outputLabel value="N° Patrimônio" for="txtsetNovor" />
+					<h:inputText size="30" maxlength="10"
+						value="#{MBEquipamento.equipamento.npatrimonio}" required="true"
+						requiredMessage="Preencha todos os campos!" />
+					<p:outputLabel value="N° Série" for="txtsetNovor" />
+					<h:inputText size="30" maxlength="10"
+						value="#{MBEquipamento.equipamento.nserie}" required="true"
+						requiredMessage="Preencha todos os campos!" />
+					<p:outputLabel value="N° de IP" for="txtsetNovor"></p:outputLabel>
+					<h:inputText size="30" maxlength="50"/>	
+						</h:panelGrid>
+						
+					
+        </p:tab>
+				
+				</p:tabView>
+				
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<p:commandButton value="Gravar" actionListener="#{MBEquipamento.salvar}"
+						oncomplete="verificar(xhr, status, args, 'dlgeqNovo', 'tbeq');"
+						update="frmeq:tbeq :msgGlobal" />
+					<p:commandButton value="Cancelar" process="@this"
+						onclick="PF('dlgeqNovo').hide();" />
+				</h:panelGrid>
+				
+			</h:form>
+		</p:dialog>
+
+		<p:dialog widgetVar="dlgeqExcluir" closable="false"
+			draggable="false" resizable="false" header="Excluir Setor"
+			modal="true" appendTo="@(body)">
+
+			<h:form id="frmeqExcluir">
+				<h:panelGrid id="pneqExcluir">
+				
+					<h:outputText value="Tipo" />
+					<h:outputText value="#{MBEquipamento.equipamento.tipo.nome}" />
+					<h:outputText value="Modelo" />
+					<h:outputText value="#{MBEquipamento.equipamento.modelo.nome}" />
+					<h:outputText value="Patrimônio" />
+					<h:outputText value="#{MBEquipamento.equipamento.patrimonio}" />
+					<h:outputText value="N° Patrimônio" />
+					<h:outputText value="#{MBEquipamento.equipamento.npatrimonio}" />
+					<h:outputText value="N° Série" />
+					<h:outputText value="#{MBEquipamento.equipamento.nserie}" />
+					<h:outputText value="Setor" />
+					<h:outputText value="#{MBEquipamento.equipamento.setor.sigla}" />
+					
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Excluir"
+						actionListener="#{MBEquipamento.excluir}"
+						oncomplete="PF('dlgeqExcluir').hide(); PF('tabelaEq').clearFilters();"
+						update="frmeq:tbeq :msgGlobal" />
+					<p:commandButton value="Cancelar" process="@this"
+						onclick="PF('dlgeqExcluir').hide(); " />
+				</h:panelGrid>
+
+			</h:form>
+
+		</p:dialog>
+
+		<p:dialog widgetVar="dlgeqEditar" closable="false"
+			draggable="false" resizable="false" header="Editar Setor"
+			modal="true" appendTo="@(body)">
+
+			<h:form id="frmeqEditar">
+				<h:panelGrid id="pneqEditar">
+					<h:outputText value="Patrimônio" />
+					<h:inputText value="#{MBEquipamento.equipamento.patrimonio}" id="txtEdtSetor" />
+					<h:outputText value="N° Patrimônio" />
+					<h:inputText value="#{MBEquipamento.equipamento.npatrimonio}" />
+					<h:outputText value="N° Série" />
+					<h:inputText value="#{MBEquipamento.equipamento.nserie}" />
+
+					<h:outputText value="Tipo" />
+					<h:inputText value="#{MBEquipamento.equipamento.tipo.nome}" />
+					<h:outputText value="Modelo" />
+					<h:inputText value="#{MBEquipamento.equipamento.modelo.nome}" />
+					<h:outputText value="Setor" />
+					<h:inputText value="#{MBEquipamento.equipamento.setor.sigla}" />
+					
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Editar" actionListener="#{MBEquipamento.editar}"
+						oncomplete="PF('dlgeqEditar').hide(); PF('tabelaEq').clearFilters();"
+						update="frmeq:tbeq :msgGlobal" />
+					<p:commandButton value="Cancelar" process="@this"
+						onclick="PF('dlgeqEditar').hide();" />
+				</h:panelGrid>
+
+			</h:form>
+
+		</p:dialog>
+
+
+	</ui:define>
+
+
+</ui:composition>

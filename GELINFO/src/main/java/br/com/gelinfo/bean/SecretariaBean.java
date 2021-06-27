@@ -82,37 +82,37 @@ public void salvar() {
 
 
 
-//public void excluir() {
-//
-//	try {
-//		SecretariaDAO sdao = new SecretariaDAO();
-//		sdao.deletar(secretaria);
-//		
-//		itens = dao.listar();
-//	
-//		JSFUtil.adicionarMensagemSucesso("Secretaria excluida com sucesso!");
-//	} catch (RuntimeException e) {
-//		JSFUtil.adicionarMensagemErro(e.getMessage());
-//		e.printStackTrace();
-//	}
-//}
-//
-//
-//
-//public void editar() {
-//
-//	try {
-//		SecretariaDAO sdao = new SecretariaDAO();
-//		sdao.editar(secretaria);
-//		
-//		itens = sdao.listar();
-//		
-//		JSFUtil.adicionarMensagemSucesso("Secretaria editada com sucesso!");
-//	} catch (RuntimeException e){
-//		JSFUtil.adicionarMensagemErro(e.getMessage());
-//		
-//		e.printStackTrace();
-//	}
-//}
+public void excluir() {
+
+	try {
+		SecretariaDAO sdao = new SecretariaDAO();
+		sdao.excluir(secretaria);
+		
+		//itens = dao.listar();
+	
+		JSFUtil.adicionarMensagemSucesso("Secretaria excluida com sucesso!");
+	} catch (RuntimeException e) {
+		JSFUtil.adicionarMensagemErro(e.getMessage());
+		e.printStackTrace();
+	}
+}
+
+
+
+public void editar() {
+
+	try {
+		SecretariaDAO sdao = new SecretariaDAO();
+		sdao.editar(secretaria);
+		
+		//itens = sdao.listar();
+		
+		JSFUtil.adicionarMensagemSucesso("Secretaria editada com sucesso!");
+	} catch (RuntimeException e){
+		JSFUtil.adicionarMensagemErro(e.getMessage());
+		
+		e.printStackTrace();
+	}
+}
 
 }
