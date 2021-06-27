@@ -16,7 +16,7 @@ xmlns:ui ="http://java.sun.com/jsf/facelets"
 </h:head>
 <h:body>
 
-<p:growl id="msgGlobal" life="3000"/>
+<p:growl id="msgGlobal" life="4000"/>
 
 <p:layout  fullPage = "true">
 
@@ -24,7 +24,7 @@ xmlns:ui ="http://java.sun.com/jsf/facelets"
        
     </p:layoutUnit>
     
-    <p:layoutUnit position = "west" size = "190" header = "menu" resizable = "true"  >
+    <p:layoutUnit position = "west" size = "190" header = "Menu" resizable = "true"  >
         
         <h:form>
         <p:panelMenu>
@@ -38,7 +38,7 @@ xmlns:ui ="http://java.sun.com/jsf/facelets"
         
         <p:submenu label = "Cadastros">
         
-        <p:menuitem value = "Secretarias"/>
+        <p:menuitem value = "Secretarias" outcome="/pages/secretarias.xhtml"/>
         <p:menuitem value = "Bairros"/>
         <p:menuitem value = "Setores"/>
         <p:menuitem value = "Marcas"/>

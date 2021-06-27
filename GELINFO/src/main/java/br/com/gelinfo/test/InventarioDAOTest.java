@@ -8,12 +8,14 @@ import org.junit.Test;
 
 
 import br.com.gelinfo.DAO.UsuarioDAO;
+import br.com.gelinfo.DAO.EquipamentoDAO;
 import br.com.gelinfo.DAO.InventarioDAO;
 import br.com.gelinfo.DAO.SetorDAO;
 
 
 import br.com.gelinfo.domain.Usuario;
 import br.com.gelinfo.domain.Setor;
+import br.com.gelinfo.domain.Equipamento;
 import br.com.gelinfo.domain.Inventario;
 
 
@@ -50,20 +52,25 @@ public class InventarioDAOTest {
 		InventarioDAO dao = new InventarioDAO();
 		List<Inventario> inventario = dao.listar();
 		
+		
+		
 		for(Inventario s1 : inventario) {
 			System.out.println(s1);
 		}
 	}
 	
 	@Test
-	@Ignore
-	public void buscarPorCodigo() {
+	//@Ignore
+	public void buscarPorCodigo() { //Busca os equipamentos inventariados
 		InventarioDAO dao = new InventarioDAO();
-		Inventario s1 = dao.buscarPorCodigo(3);
-		Inventario s2 = dao.buscarPorCodigo(2);
+		Inventario s1 = dao.buscarPorCodigo(1);
+		
+		EquipamentoDAO edao = new EquipamentoDAO();
+		//Equipamento e1 = edao.buscarPorCodigo(1);
+		List<Equipamento> equipamento = edao.listar();
 		
 			System.out.println(s1);
-			System.out.println(s2);
+			System.out.println(equipamento);
 	}
 	
 	@Test
