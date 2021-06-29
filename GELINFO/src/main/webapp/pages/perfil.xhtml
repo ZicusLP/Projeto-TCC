@@ -63,7 +63,7 @@
 			<h:form id="frmperfilNovo">
 				<h:panelGrid id="pnperfilNovo" columns="2">
 					<p:outputLabel value="Nome do Perfil" for="txtuserNovo" />
-					<h:inputText size="30" maxlength="50"
+					<p:inputText size="30" maxlength="50"
 						value="#{MBPerfil.perfil.funcao}" 
 						id="txtuserNovo"
 						required="true" 
@@ -88,7 +88,7 @@
 			<h:form id="frmperfilExcluir">
 				<h:panelGrid id="pnperfilExcluir">
 					<h:outputText value="Cargo" />
-					<h:outputText value="#{MBPerfil.perfil.funcao}" />
+					<h:outputLabel value="#{MBPerfil.perfil.funcao}" />
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
@@ -111,7 +111,7 @@
 			<h:form id="frmperfilEditar">
 				<h:panelGrid id="pnperfilEditar">
 					<h:outputText value="Cargo" />
-					<h:inputText value="#{MBPerfil.perfil.funcao}" />
+					<p:inputText value="#{MBPerfil.perfil.funcao}" />
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">

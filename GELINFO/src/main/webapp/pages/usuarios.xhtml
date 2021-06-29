@@ -78,30 +78,27 @@
 			<h:form id="frmusuarioNovo">
 				<h:panelGrid id="pnusuarioNovo" columns="2">
 
-					<p:outputLabel value="Perfil" for="txtuserNovo" />
-					<p:selectOneMenu>
-						<f:selectItem itemValue="" itemLabel="Selecione o Perfil" />
-						<f:selectItem itemValue="" itemLabel="Coordenador" />
-						<f:selectItem itemValue="" itemLabel="Gestor" />
-						<f:selectItem itemValue="" itemLabel="Funcionário" />
-						<f:selectItem itemValue="" itemLabel="Estagiário" />
-						</p:selectOneMenu>
 
+					<p:outputLabel value="Perfil" for="txtuserNovo" />
+					<p:selectOneMenu value = "#{MBUsuario.usuario.perfil}" converter="perfilConverter">
+					<f:selectItem itemValue="" itemLabel="Selecione o Perfil" />
+					<f:selectItems value="#{MBUsuario.listaPerfil}" var="perfil" itemValue="#{perfil}" itemLabel="#{perfil.funcao}"/>
+					</p:selectOneMenu>
 
 					<p:outputLabel value="Nome do Usuario" for="txtuserNovo" />
-					<h:inputText size="30" maxlength="50"
+					<p:inputText size="25" maxlength="50"
 						value="#{MBUsuario.usuario.nome}" id="txtuserNovo" required="true"
 						requiredMessage="Preencha todos os campos!" />
 					<p:outputLabel value="Login" for="txtuserNovo" />
-					<h:inputText size="30" maxlength="20"
+					<p:inputText size="25" maxlength="20"
 						value="#{MBUsuario.usuario.login}" required="true"
 						requiredMessage="Preencha todos os campos!" />
 					<p:outputLabel value="Senha" for="txtuserNovo" />
-					<h:inputSecret size="15" maxlength="11"
+					<p:password size="15" maxlength="11"
 						value="#{MBUsuario.usuario.senha}" required="true"
 						requiredMessage="Preencha todos os campos!" />
-					<p:outputLabel value="telefone" />
-					<h:inputText size="15" maxlength="12"
+					<p:outputLabel value="Telefone" />
+					<p:inputText size="15" maxlength="12"
 						value="#{MBUsuario.usuario.telefone}" />
 				</h:panelGrid>
 

@@ -121,15 +121,15 @@
 						</p:selectOneMenu>
 
 					<p:outputLabel value="Nome do setor" for="txtsetNovo" />
-					<h:inputText size="30" maxlength="50" id="txtsetNovo"
+					<p:inputText size="30" maxlength="50" id="txtsetNovo"
 						value="#{MBSetor.setor.nome}" required="true"
 						requiredMessage="Preencha todos os campos!" />
 					<p:outputLabel value="Sigla" for="txtsetNovo" />
-					<h:inputText size="30" maxlength="10"
+					<p:inputText size="30" maxlength="10"
 						value="#{MBSetor.setor.sigla}" required="true"
 						requiredMessage="Preencha todos os campos!" />
 					<p:outputLabel value="Andar" for="txtsetNovo" />
-					<h:inputText size="30" maxlength="10"
+					<p:inputText size="30" maxlength="10"
 						value="#{MBSetor.setor.andar}" required="true"
 						requiredMessage="Preencha todos os campos!" />
 
@@ -187,19 +187,19 @@
 			<h:form id="frmsetorEditar">
 				<h:panelGrid id="pnsetorEditar">
 					<h:outputText value="Nome" />
-					<h:inputText value="#{MBSetor.setor.nome}" id="txtEdtSetor" />
+					<p:inputText value="#{MBSetor.setor.nome}" id="txtEdtSetor" />
 					<h:outputText value="Sigla" />
-					<h:inputText value="#{MBSetor.setor.sigla}" />
+					<p:inputText value="#{MBSetor.setor.sigla}" />
 					<h:outputText value="Andar" />
-					<h:inputText value="#{MBSetor.setor.andar}" />
+					<p:inputText value="#{MBSetor.setor.andar}" />
 
 					<h:outputText value="Secretaria" />
-					<h:inputText value="#{MBSetor.setor.secretaria.sigla}" />
+					<p:inputText value="#{MBSetor.setor.secretaria.sigla}" />
 
 					<h:outputText value="Bairro" />
-					<h:inputText value="#{MBSetor.setor.bairro.nome}" />
+					<p:inputText value="#{MBSetor.setor.bairro.nome}" />
 					<h:outputText value="Endereço" />
-					<h:inputText value="#{MBSetor.setor.bairro.endereco}" />
+					<p:inputText value="#{MBSetor.setor.bairro.endereco}" />
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">

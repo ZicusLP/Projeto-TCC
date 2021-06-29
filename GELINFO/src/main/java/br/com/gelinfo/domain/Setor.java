@@ -93,6 +93,29 @@ public class Setor {
 		return "Setor [codigo=" + codigo + ", nome=" + nome + ", sigla=" + sigla + ", andar=" + andar + ", secretaria="
 				+ secretaria + ", bairro=" + bairro + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + codigo;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Setor other = (Setor) obj;
+		if (codigo != other.codigo)
+			return false;
+		return true;
+	}
+	
 	
 	
 }

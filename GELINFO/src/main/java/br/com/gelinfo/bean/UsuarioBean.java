@@ -3,6 +3,7 @@ package br.com.gelinfo.bean;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -23,15 +24,16 @@ public class UsuarioBean {
 	private ArrayList<Usuario>itens;
 	private ArrayList<Usuario>itensFiltrados;
 	
-	private ArrayList<Perfil>comboPerfil;
+	private List<Perfil>listaPerfil;
 	
 	
 	
-	public ArrayList<Perfil> getComboPerfil() {
-		return comboPerfil;
+	
+	public List<Perfil> getListaPerfil() {
+		return listaPerfil;
 	}
-	public void setComboPerfil(ArrayList<Perfil> comboPerfil) {
-		this.comboPerfil = comboPerfil;
+	public void setListaPerfil(List<Perfil> listaPerfil) {
+		this.listaPerfil = listaPerfil;
 	}
 	public Usuario getUsuario() {
 		return usuario;
@@ -80,7 +82,7 @@ public void prepararInserir() {
 	usuario = new Usuario();
 	
 	PerfilDAO pdao = new PerfilDAO();
-	comboPerfil = (ArrayList<Perfil>) pdao.listar();
+	listaPerfil =  pdao.listar();
 	
 	} catch (RuntimeException e) {
 		JSFUtil.adicionarMensagemErro(e.getMessage());

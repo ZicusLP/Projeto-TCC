@@ -81,7 +81,7 @@
 						</p:selectOneMenu>
 
 					<p:outputLabel value="Nome do modelo" for="txtmodNovo" />
-					<h:inputText size="30" maxlength="50" id="txtmodNovo"
+					<p:inputText size="30" maxlength="50" id="txtmodNovo"
 						value="#{MBModelo.modelos.nome}"
 						required="true" 
 						requiredMessage="Preencha todos os campos!" />
@@ -134,10 +134,10 @@
 				<h:panelGrid id="pnmodeloEditar">
 					
 					<h:outputText value="Marca" />
-					<h:inputText value="#{MBModelo.modelos.marca.nome}"  />
+					<p:inputText value="#{MBModelo.modelos.marca.nome}"  />
 					
 					<h:outputText value="Nome" />
-					<h:inputText value="#{MBModelo.modelos.nome}" id="txtEdtModelo" />
+					<p:inputText value="#{MBModelo.modelos.nome}" id="txtEdtModelo" />
 					
 					
 						
