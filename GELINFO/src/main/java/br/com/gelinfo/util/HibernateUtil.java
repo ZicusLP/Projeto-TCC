@@ -27,7 +27,7 @@ public class HibernateUtil {
         	return sessionFactory;
         	
         	
-        	//return new Configuration().configure().buildSessionFactory(
+        	//return new Configuration().configure().buildSessionFactory();
 			  //  new StandardServiceRegistryBuilder().build() );
         }
         catch (Throwable ex) {

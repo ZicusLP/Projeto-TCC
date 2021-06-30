@@ -2,6 +2,8 @@ package br.com.gelinfo.DAO;
 
 import java.util.List;
 
+
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -134,5 +136,30 @@ public class UsuarioDAO {
 		}
 		
 	}
+	
 
+
+public Usuario login (String login, String senha) {
+		
+	Session sessao = HibernateUtil.getSessionFactory().openSession(); //abrindo sessao
+	
+	Usuario usuario = null;
+	
+  try {
+		Query consulta = sessao.getNamedQuery("Usuario.login");
+		consulta.setString("login", login);
+		consulta.setString("senha", senha);
+		usuario = (Usuario) consulta.uniqueResult();
+	
+	}catch(RuntimeException ex) {
+		throw ex;
+
+	}
+	
+	finally{
+		sessao.close(); //encerra sessao
+	}
+	
+	return usuario;
+}
 }
