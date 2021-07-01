@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h ="http://java.sun.com/jsf/html"
+xmlns:f ="http://java.sun.com/jsf/core"
+xmlns:p ="http://primefaces.org/ui"
+xmlns:ui ="http://java.sun.com/jsf/facelets"
+>
+<h:head>
+
+<h:outputStylesheet library="css" name="style.css" />
+<h:outputScript library="js" name="scripts.js"/>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Sistema GELINFO</title>
+</h:head>
+<h:body>
+
+<p:growl id="msgGlobal" life="4000"/>
+
+<p:layout  fullPage = "true">
+
+    <p:layoutUnit position = "north" size = "50" header = "Sistema GELINFO" resizable = "false"  >
+       
+    </p:layoutUnit>
+    
+    <p:layoutUnit position = "west" size = "190" header = "Menu" resizable = "true" collapsible="true" >
+        
+        <h:form>
+        <p:panelMenu>
+        <p:submenu label = "Configurações">
+        
+        <p:menuitem value = "Perfil" outcome="/pages/perfil.xhtml"/>
+        <p:menuitem value = "Usuários" outcome="/pages/usuarios.xhtml"/>
+        <p:menuitem value = "Sair"/>
+        
+        </p:submenu>
+        
+        <p:submenu label = "Cadastros">
+        
+        <p:menuitem value = "Secretarias" outcome="/pages/secretarias.xhtml"/>
+        <p:menuitem value = "Bairros" outcome="/pages/bairros.xhtml"/>
+        <p:menuitem value = "Setores" outcome="/pages/setores.xhtml"/>
+        <p:menuitem value = "Marcas" outcome="/pages/marcas.xhtml"/>
+        <p:menuitem value = "Modelos" outcome="/pages/modelos.xhtml"/>
+        <p:menuitem value = "Tipos de Equipamentos" outcome="/pages/tipoequipamento.xhtml"/>
+        <p:menuitem value = "Equipamentos" outcome="/pages/equipamentos.xhtml"/>
+        
+        </p:submenu>
+        
+        <p:submenu label = "Inventário">
+        
+        <p:menuitem value = "Inventariar" outcome="/pages/inventario.xhtml"/>
+        
+        </p:submenu>
+        
+        <p:submenu label = "Ajuda">
+        
+        <p:menuitem value = "Sobre"/>
+        
+        </p:submenu>
+        
+        </p:panelMenu>
+        </h:form>
+        
+    </p:layoutUnit>
+	
+	 <p:layoutUnit position = "south" size = "50" header = "Desenvolvido por L.A Technology" resizable = "false"  >
+        
+    </p:layoutUnit>
+   
+
+
+    <p:layoutUnit position = "center" >
+        <ui:insert name="conteudo"/>
+    </p:layoutUnit>
+
+</p:layout>
+
+</h:body>
+</html>
